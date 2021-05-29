@@ -505,7 +505,7 @@ clone() {
 
     case $module in
     "pixman")
-        BASEDIR=""
+        BASEDIR="pixman/"
         ;;
     "xcb")
         BASEDIR=""
@@ -514,14 +514,14 @@ clone() {
         BASEDIR=""
         ;;
     "xkeyboard-config")
-        BASEDIR=""
+        BASEDIR="xkeyboard-config/"
         ;;
     "libevdev")
-        BASEDIR=""
+        BASEDIR="libevdev/"
         ;;
     "libinput")
-	BASEDIR="wayland/"
-	;;
+        BASEDIR="libinput/"
+        ;;
     *)
         BASEDIR="xorg/"
         ;;
@@ -1033,17 +1033,17 @@ build_all_modules() {
     build doc xorg-sgml-doctools
     build doc xorg-docs
     build proto xorgproto
-    build xcb proto
+    build proto xcbproto
     build lib libxtrans
     build lib libXau
     build lib libXdmcp
-    build xcb pthread-stubs
-    build xcb libxcb
-    build xcb util
-    build xcb util-image
-    build xcb util-keysyms
-    build xcb util-renderutil
-    build xcb util-wm
+    build lib pthread-stubs
+    build lib libxcb
+    build lib libxcb-util
+    build lib libxcb-image
+    build lib libxcb-keysyms
+    build lib libxcb-render-util
+    build lib libxcb-wm
     build lib libX11
     build lib libXext
     case $HOST_OS in
@@ -1089,7 +1089,7 @@ build_all_modules() {
     build mesa mesa
     build data bitmaps
     build app appres
-    build app bdftopcf
+    build util bdftopcf
     build app beforelight
     build app bitmap
     build app editres
@@ -1104,7 +1104,7 @@ build_all_modules() {
     build app mkfontscale
     build app oclock
     build app rgb
-    build app rendercheck
+    build test rendercheck
     build app rstart
     build app scripts
     build app sessreg
@@ -1113,7 +1113,7 @@ build_all_modules() {
     build app smproxy
     build app twm
     build app viewres
-    build app x11perf
+    build test x11perf
     build app xauth
     build app xbacklight
     build app xbiff
@@ -1125,7 +1125,7 @@ build_all_modules() {
     build app xcursorgen
     build app xdbedizzy
     build app xditview
-    build app xdm
+    # build app xdm # won't use
     build app xdpyinfo
     build app xdriinfo
     build app xedit
@@ -1177,7 +1177,7 @@ build_all_modules() {
     case $HOST_OS in
 	Linux)
 	    build libevdev ""
-	    build libinput ""
+	    build libinput "" -Ddocumentation=false
 	    ;;
     esac
     case $HOST_OS in
@@ -1199,7 +1199,7 @@ build_all_modules() {
         Darwin)
 	    ;;
 	*)
-	    build driver xf86-input-keyboard
+	    # build driver xf86-input-keyboard # won't use
 	    build driver xf86-input-mouse
 	    build driver xf86-input-synaptics
 	    build driver xf86-input-void
@@ -1260,14 +1260,14 @@ build_all_modules() {
 	    build driver xf86-video-rendition
 	    build driver xf86-video-r128
 	    build driver xf86-video-s3
-	    build driver xf86-video-s3virge
+	    # build driver xf86-video-s3virge # won't use
 	    build driver xf86-video-savage
 	    build driver xf86-video-siliconmotion
 	    build driver xf86-video-sis
 	    build driver xf86-video-tdfx
 	    build driver xf86-video-tga
 	    build driver xf86-video-trident
-	    build driver xf86-video-tseng
+	    # build driver xf86-video-tseng # won't use
 	    build driver xf86-video-vesa
 	    build driver xf86-video-vmware
 	    build driver xf86-video-voodoo
@@ -1285,7 +1285,7 @@ build_all_modules() {
     build font bh-75dpi
     build font bh-lucidatypewriter-100dpi
     build font bh-lucidatypewriter-75dpi
-    build font bh-ttf
+    # build font bh-ttf # won't use
     build font bh-type1
     build font bitstream-100dpi
     build font bitstream-75dpi
@@ -1606,4 +1606,3 @@ if [ X"$CLONE" != X ] && [ X"$clonefailed_components" != X ];  then
     done
     echo ""
 fi
-
